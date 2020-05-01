@@ -1,0 +1,15 @@
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe.config
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\bin\Debug\RaspenGames.pdb
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csprojAssemblyReference.cache
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\MainWindow.g.cs
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\App.g.cs
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.cache
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.lref
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\MainWindow.baml
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.g.resources
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.Properties.Resources.resources
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.GenerateResource.cache
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.CoreCompileInputs.cache
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.exe
+C:\Users\Андрей\source\repos\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb
