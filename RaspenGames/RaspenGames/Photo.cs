@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace RaspenGames
 {
@@ -16,7 +17,7 @@ namespace RaspenGames
             }
             set
             {
-                data[x, y] = data[x, y];
+                data[x, y] = value;
             }
         }
 

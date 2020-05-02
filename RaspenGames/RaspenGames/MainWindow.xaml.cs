@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Resources;
 
 namespace RaspenGames
 {
@@ -109,26 +111,77 @@ namespace RaspenGames
         private Pixel[] toPixels(byte[] list) 
         {
             var Length = list.Length/3;
-
-            if (list.Length % 3 != 0)
-                Length++;
+            int ost = list.Length % 3;
             
-
             Pixel[] pixels = new Pixel[Length];
+
             int counter=0;
          
-            for (int i = 0; i < Length-1; i++)
+            for (int i = 0; i < Length; i++)
             {
-                pixels[counter] = new Pixel(list[i], list[i + 1], list[i + 2]);
-                i += 2;
+                pixels[counter] = new Pixel(list[i*3], list[i*3 + 1], list[i*3 + 2]);
                 counter++;
+            }
+            if(ost != 0)
+            {
+                switch(ost)
+                {
+                    case 1:
+                        pixels[Length - 1] = new Pixel(list[list.Length-1]);
+                        break;
+                    case 2:
+                        pixels[Length - 1] = new Pixel(list[list.Length - 2], list[list.Length - 1]);
+                        break;
+                }
             }
             return pixels;
         }
 
+        public static Bitmap Photo2Bitmap(Photo photo)
+        {
+            var bmp = new Bitmap(photo.width, photo.height);
+            for (int x = 0; x < bmp.Width; x++)
+                for (int y = 0; y < bmp.Height; y++)
+                    bmp.SetPixel(x, y, System.Drawing.Color.FromArgb(
+                       photo[x, y].Red,
+                       photo[x, y].Green,
+                        photo[x, y].Blue));
+
+            return bmp;
+        }
+
+        private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+                return bitmapimage;
+            }
+        }
+      
+
         private void decrypt() 
         {
-           // Colobutton.Background
+                      
+        }
+
+        private void Draw(Pixel[] pixels) 
+        {
+            
+           
+            Photo photo = new Photo(pixels.Length, 1);
+            for(int i = 0;i<pixels.Length;i++)
+            {
+                photo[i, 0] = pixels[i];
+            }                   
+            Photo2Bitmap(photo).Save(Resources.Source.AbsoluteUri + "image.png",ImageFormat.Png);       
+            image.Source = new BitmapImage(new Uri("image.png", UriKind.Relative));     
         }
 
         private void Decide_Click(object sender, RoutedEventArgs e)
@@ -136,9 +189,7 @@ namespace RaspenGames
             var mass = toByte(textBoxInput.Text); 
             mass = encrypt(mass);
             var pixels = toPixels(mass);
-          
-            var p = pixels[0];
-            button.Background = new SolidColorBrush(Color.FromRgb(p.Red,p.Green,p.Blue));
+            Draw(pixels);
             decrypt();
         }
     }
