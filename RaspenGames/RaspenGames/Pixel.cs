@@ -12,7 +12,7 @@ namespace RaspenGames
        public byte Green;
        public byte Blue;
 
-        public Pixel() { }
+        public Pixel() { Red = 0;Green = 0;Blue = 0; }
         public Pixel(byte Red) { this.Red = Red; Green = 0; Blue = 0; }
         public Pixel(byte Red,byte Green) { this.Red = Red; this.Green = Green; Blue = 0; }
 

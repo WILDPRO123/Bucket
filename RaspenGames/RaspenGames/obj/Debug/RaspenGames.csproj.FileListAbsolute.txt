@@ -28,3 +28,5 @@ D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.c
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.CoreCompileInputs.cache
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.exe
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb
+D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.g.cs
+D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.baml
