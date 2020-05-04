@@ -30,9 +30,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxInput" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"/>
-        <TextBox x:Name="textBoxoutPut" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="4"/>
-        <Image x:Name="image" Grid.Column="0" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="4"/>
-        <Image x:Name="image2" Grid.Column="7" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="4"/>
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxOutPut" Grid.Row="0" Grid.RowSpan="2" Grid.Column="7" Grid.ColumnSpan="4"/>
+        <Image x:Name="image" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+        <Image x:Name="image2" Grid.Column="7" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
         <Button Content="Расчёт" x:Name="Decide" Grid.Column="5" Grid.Row="1" Click="Decide_Click" />
     </Grid>
 </Window>

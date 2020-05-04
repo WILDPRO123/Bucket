@@ -25,13 +25,15 @@ namespace RaspenGames
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
+        private static Photo photo;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private int boolToByte(bool a) 
+        private int boolToByte(bool a)
         {
             if (a)
                 return 1;
@@ -50,7 +52,7 @@ namespace RaspenGames
         }
 
         private byte[] encrypt(byte[] data)
-        {        
+        {
             using (var aes = Aes.Create())
             {
                 aes.KeySize = 256;
@@ -70,7 +72,7 @@ namespace RaspenGames
         private byte[] toByte(string text)
         {
             List<bool> mass = new List<bool>();
-            for(int i = 0;i<text.Length;i++)
+            for (int i = 0; i < text.Length; i++)
             {
                 if (text[i] == '0')
                     mass.Add(false);
@@ -79,26 +81,26 @@ namespace RaspenGames
             }
             int length;
             length = mass.Count / 8;
-            if(mass.Count%8!=0)
+            if (mass.Count % 8 != 0)
             {
                 length++;
             }
             byte[] bytemass = new byte[length];
-            int counter=0;
+            int counter = 0;
             int scouneter = 0;
-            for(int i = 0;i<bytemass.Length;i++)
+            for (int i = 0; i < bytemass.Length; i++)
             {
                 bytemass[i] = 0;
             }
-            
-            while(mass.Count!=0)
+
+            while (mass.Count != 0)
             {
-                if(counter!=8)
+                if (counter != 8)
                 {
-                    bytemass[scouneter] +=(byte)(boolToByte(mass.ElementAt(0))<<8-counter - 1);
+                    bytemass[scouneter] += (byte)(boolToByte(mass.ElementAt(0)) << 8 - counter - 1);
                     mass.RemoveAt(0);
                 }
-                else if(counter == 8)
+                else if (counter == 8)
                 {
                     counter = -1;
                     scouneter++;
@@ -108,26 +110,26 @@ namespace RaspenGames
             return bytemass;
         }
 
-        private Pixel[] toPixels(byte[] list) 
+        private Pixel[] toPixels(byte[] list)
         {
-            var Length = list.Length/3;
+            var Length = list.Length / 3;
             int ost = list.Length % 3;
-            
+
             Pixel[] pixels = new Pixel[Length];
 
-            int counter=0;
-         
+            int counter = 0;
+
             for (int i = 0; i < Length; i++)
             {
-                pixels[counter] = new Pixel(list[i*3], list[i*3 + 1], list[i*3 + 2]);
+                pixels[counter] = new Pixel(list[i * 3], list[i * 3 + 1], list[i * 3 + 2]);
                 counter++;
             }
-            if(ost != 0)
+            if (ost != 0)
             {
-                switch(ost)
+                switch (ost)
                 {
                     case 1:
-                        pixels[Length - 1] = new Pixel(list[list.Length-1]);
+                        pixels[Length - 1] = new Pixel(list[list.Length - 1]);
                         break;
                     case 2:
                         pixels[Length - 1] = new Pixel(list[list.Length - 2], list[list.Length - 1]);
@@ -164,29 +166,66 @@ namespace RaspenGames
                 return bitmapimage;
             }
         }
-      
 
-        private void decrypt() 
+        private void decrypt()
         {
-                      
+            Pixel[] pixels = new Pixel[photo.height * photo.width];
+            int counter = 0;
+            for (int i = 0; i < photo.width; i++)
+            {
+                for (int j = 0; j < photo.height; j++)
+                {
+                    pixels[counter] = photo[i, j];
+                    counter++;
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                sb.Append(pixels[i].ToString());
+                if (i != pixels.Length - 1)
+                    sb.Append(',');
+            }
+            textBoxOutPut.Text = sb.ToString();
         }
 
-        private void Draw(Pixel[] pixels) 
+        private void Draw(Pixel[] pixels)
         {
-            
-           
-            Photo photo = new Photo(pixels.Length, 1);
-            for(int i = 0;i<pixels.Length;i++)
+            if (pixels.Length < 7)
             {
-                photo[i, 0] = pixels[i];
-            }                   
-            Photo2Bitmap(photo).Save(Resources.Source.AbsoluteUri + "image.png",ImageFormat.Png);       
-            image.Source = new BitmapImage(new Uri("image.png", UriKind.Relative));     
+                photo = new Photo(pixels.Length, 1);
+                for (int i = 0; i < pixels.Length; i++)
+                {
+                    photo[i, 0] = pixels[i];
+                }
+            }
+            else
+            {
+                double side = Math.Sqrt(pixels.Length);
+                int counter = 0;
+                photo = new Photo((int)Math.Round(side), (int)Math.Ceiling(side));
+                for (int i = 0; i < photo.width; i++)
+                {
+                    for (int j = 0; j < photo.height; j++)
+                    {
+                        if (pixels.Length > counter)
+                        {
+                            photo[i, j] = pixels[counter];
+                        }
+                        else
+                        {
+                            photo[i, j] = new Pixel(255, 255, 255);
+                        }
+                        counter++;
+                    }
+                }
+            }
+            image.Source = BitmapToBitmapImage(Photo2Bitmap(photo));
         }
 
         private void Decide_Click(object sender, RoutedEventArgs e)
         {
-            var mass = toByte(textBoxInput.Text); 
+            var mass = toByte(textBoxInput.Text);
             mass = encrypt(mass);
             var pixels = toPixels(mass);
             Draw(pixels);

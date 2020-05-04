@@ -24,7 +24,7 @@ namespace RaspenGames
         }
         public override string ToString()
         {
-            return $"{Red},{Green},{Blue}";
+            return $"{Red:X},{Green:X},{Blue:X}";
         }
     }
 }
