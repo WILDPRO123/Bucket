@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -19,8 +20,10 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -28,12 +31,12 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxInput" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"/>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxOutPut" Grid.Row="1" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="4"/>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxKey" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
-        <Image x:Name="image" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
-        <Image x:Name="image2" Grid.Column="7" Grid.Row="3" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
-        <Button Content="Расчёт" x:Name="Decide" Grid.Column="5" Grid.Row="1" Click="Decide_Click" />
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxInput" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxOutPut" Grid.Row="1" Grid.RowSpan="3" Grid.Column="8" Grid.ColumnSpan="4"/>
+        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxKey" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+        <Image x:Name="image" Grid.Column="1" Grid.Row="4" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+        <Button Content="Расчёт" x:Name="Decide" Grid.Column="6" Grid.Row="1" Click="Decide_Click" />
     </Grid>
 </Window>

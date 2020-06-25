@@ -30,3 +30,20 @@ D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.e
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.g.cs
 D:\программы\с#\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.baml
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe.config
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.pdb
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csprojAssemblyReference.cache
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.g.cs
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\MainWindow.g.cs
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\App.g.cs
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.cache
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.lref
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\DecondingWindow.baml
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\MainWindow.baml
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.g.resources
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.Properties.Resources.resources
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.GenerateResource.cache
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.CoreCompileInputs.cache
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.exe
+D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb

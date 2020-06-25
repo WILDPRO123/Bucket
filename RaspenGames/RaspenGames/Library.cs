@@ -7,12 +7,95 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace RaspenGames
 {
     public static class Library
     {
+
+        public static readonly int KeySize = 256;
+        //public static readonly int BlockSize = 128;
+        public static int BlockSize { get { return KeySize / 2; } }
+
+        private static byte getByteFromChar(char a)
+        {
+            switch (a)
+            {
+                case '0':
+                    return 0;
+                case '1':
+                    return 1;
+                case '2':
+                    return 2;
+                case '3':
+                    return 3;
+                case '4':
+                    return 4;
+                case '5':
+                    return 5;
+                case '6':
+                    return 6;
+                case '7':
+                    return 7;
+                case '8':
+                    return 8;
+                case '9':
+                    return 9;
+                case 'a':
+                case 'A':
+                    return 0x0A;
+                case 'b':
+                case 'B':
+                    return 0x0B;
+                case 'c':
+                case 'C':
+                    return 0x0C;
+                case 'd':
+                case 'D':
+                    return 0x0D;
+                case 'e':
+                case 'E':
+                    return 0x0E;
+                case 'f':
+                case 'F':
+                    return 0x0F;
+            }
+            MessageBox.Show($"Неправильный адрес(символа {a:X} не существует в шестнадцатиричной системе)");
+            return 0;
+        }
+
+        private static byte getByteFromString(string a)
+        {
+            byte b;
+            if (a.Length < 2)
+            {
+                a = '0' + a;
+            }
+
+            if (a.Length == 2)
+            {
+                b = (byte)(getByteFromChar(a[0]) << 4);
+                b += getByteFromChar(a[1]);
+                return b;
+            }
+
+            else
+                throw new ArgumentException("Проверьте правильность введения чисел для строки адресс");
+        }
+
+        public static byte[] fromStringToByte(string text)
+        {
+            var line = text.Split(new char[] { ',',' ' }, StringSplitOptions.RemoveEmptyEntries);
+            byte[] list = new byte[line.Length];
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i] = getByteFromString(line[i]);
+            }
+            return list;
+        }
+
         public static Pixel[] toPixels(byte[] list)
         {
             int Length = (int)Math.Ceiling((double)list.Length / 3);

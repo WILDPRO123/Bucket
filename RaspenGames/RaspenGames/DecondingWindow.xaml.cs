@@ -21,70 +21,8 @@ namespace RaspenGames
     /// </summary>
     public partial class DecondingWindow : Window
     {
-        private static byte getByteFromChar(char a)
-        {
-            switch (a)
-            {
-                case '0':
-                    return 0;
-                case '1':
-                    return 1;
-                case '2':
-                    return 2;
-                case '3':
-                    return 3;
-                case '4':
-                    return 4;
-                case '5':
-                    return 5;
-                case '6':
-                    return 6;
-                case '7':
-                    return 7;
-                case '8':
-                    return 8;
-                case '9':
-                    return 9;
-                case 'a':
-                case 'A':
-                    return 0x0A;
-                case 'b':
-                case 'B':
-                    return 0x0B;
-                case 'c':
-                case 'C':
-                    return 0x0C;
-                case 'd':
-                case 'D':
-                    return 0x0D;
-                case 'e':
-                case 'E':
-                    return 0x0E;
-                case 'f':
-                case 'F':
-                    return 0x0F;
-            }
-            MessageBox.Show($"Неправильный адрес(символа {a:X} не существует в шестнадцатиричной системе)");
-            return 0;
-        }
-        private static byte getByteFromString(string a)
-        {
-            byte b;
-            if (a.Length < 2)
-            {
-                a = '0' + a;
-            }
-
-            if (a.Length == 2)
-            {
-                b = (byte)(getByteFromChar(a[0]) << 4);
-                b += getByteFromChar(a[1]);
-                return b;
-            }
-
-            else
-                throw new ArgumentException("Проверьте правильность введения чисел для строки адресс");
-        }
+        
+        
 
         private byte[] data;
 
@@ -111,39 +49,48 @@ namespace RaspenGames
             {
                 data[i] = mass[i];
             }
+            Image1.Source = Library.BitmapToBitmapImage(Library.Photo2Bitmap(photo));
         }
 
-        private byte[] fromStringToByte(string text)
+        
+
+        private string byteToBoolStr(byte a)
         {
-            var line = text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            byte[] list = new byte[line.Length];
-            for (int i = 0; i < list.Length; i++)
+            StringBuilder sb = new StringBuilder();
+            while(a>0)
             {
-                list[i] = getByteFromString(line[i]);
+                sb.Append(a % 2);
+                a /= 2;
             }
-            return list;
+            var length = sb.Length;
+            for(int i = sb.Length-1;i>=0;i--)
+            {
+                sb.Append(sb[i]);
+            }
+            sb.Remove(0, length);
+            if (sb.Length == 0)
+                return "0";
+            return sb.ToString();
         }
+
+       
 
         private void Decide_Click(object sender, RoutedEventArgs e)
         {
-            byte[] key = fromStringToByte(textBoxKey.Text);
-            byte[] IV = fromStringToByte(textBoxIV.Text);
+            byte[] key = Library.fromStringToByte(textBoxKey.Text);
+            byte[] IV = Library.fromStringToByte(textBoxIV.Text);
             Aes aes = Aes.Create();
-            aes.Key = key;
-            aes.IV = IV;
-            aes.KeySize = aes.Key.Length;
-            aes.BlockSize = 128;
+            aes.KeySize = Library.KeySize;
+            aes.BlockSize = Library.BlockSize;
             aes.Padding = PaddingMode.Zeros;
-            using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
+            using (var decryptor = aes.CreateDecryptor(key, IV))
             {
                 result = Library.PerformCryptography(data, decryptor);
             }
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
+            for (int i = result.Length-1; i >=0; i--)
             {
-                sb.Append(i.ToString("X"));
-                if (i != result.Length - 1)
-                    sb.Append(',');
+                sb.Append(byteToBoolStr(result[i]));
             }
             textBoxResult.Text = sb.ToString();
         }

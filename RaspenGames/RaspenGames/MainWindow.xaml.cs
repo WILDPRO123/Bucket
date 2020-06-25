@@ -38,12 +38,11 @@ namespace RaspenGames
         {
             using (var aes = Aes.Create())
             {
-                aes.KeySize = 256;
-                aes.BlockSize = 128;
+                aes.BlockSize = Library.BlockSize;
+                aes.KeySize = Library.KeySize;
                 aes.Padding = PaddingMode.Zeros;
-
-                aes.GenerateIV();
                 aes.GenerateKey();
+                aes.GenerateIV();
                 Key = aes.Key;
                 IV = aes.IV;
                 using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV))
@@ -75,7 +74,7 @@ namespace RaspenGames
                     sb.Append(',');
             }
             sb.Append('\n');
-            sb.Append("IV : ");
+            sb.Append("IV : \n");
             for (int i = 0; i < IV.Length; i++)
             {
                 sb.Append(IV[i].ToString("X"));
