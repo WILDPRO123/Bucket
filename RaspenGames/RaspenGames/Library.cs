@@ -16,8 +16,8 @@ namespace RaspenGames
     {
 
         public static readonly int KeySize = 256;
-        //public static readonly int BlockSize = 128;
-        public static int BlockSize { get { return KeySize / 2; } }
+        public static readonly int BlockSize = 128;
+        
 
         private static byte getByteFromChar(char a)
         {
@@ -118,24 +118,15 @@ namespace RaspenGames
                 switch (ost)
                 {
                     case 1:
-                        pixels[Length] = new Pixel(list[list.Length - 1], 0, 0);
+                        pixels[Length] = new Pixel(list[list.Length - 1], 255, 255);
                         break;
                     case 2:
-                        pixels[Length] = new Pixel(list[list.Length - 2], list[list.Length - 1], 0);
+                        pixels[Length] = new Pixel(list[list.Length - 2], list[list.Length - 1], 255);
                         break;
                 }
             }
             return pixels;
-        }
-
-
-        private static int boolToByte(bool a)
-        {
-            if (a)
-                return 1;
-            return 0;
-        }
-
+        }   
         public static byte[] toByte(string text)
         {
             List<bool> mass = new List<bool>();
@@ -147,33 +138,29 @@ namespace RaspenGames
                     mass.Add(true);
             }
             int length;
-            length = mass.Count / 8;
-            if (mass.Count % 8 != 0)
+            length = (int)Math.Ceiling((double)mass.Count / 8);           
+            byte[] bytemass = new byte[length];                       
+            var counter = 0;
+            var scounter = length-1;
+            byte metabyte = 0;
+            while (mass.Count > 0)
             {
-                length++;
-            }
-            byte[] bytemass = new byte[length];
-            int counter = 0;
-            int scouneter = 0;
-            for (int i = 0; i < bytemass.Length; i++)
-            {
-                bytemass[i] = 0;
-            }
-
-            while (mass.Count != 0)
-            {
-                if (counter != 8)
+                if(mass.Last()==true)
                 {
-                    bytemass[scouneter] += (byte)(boolToByte(mass.ElementAt(0)) << 8 - counter - 1);
-                    mass.RemoveAt(0);
-                }
-                else if (counter == 8)
+                    metabyte += (byte)(1 << counter);
+                }    
+                if(counter == 7)
                 {
-                    counter = -1;
-                    scouneter++;
+                    counter = -1;                   
+                    bytemass[scounter] = metabyte;
+                    scounter--;
+                    metabyte = 0;
                 }
+                mass.RemoveAt(mass.Count-1);
                 counter++;
             }
+            if (metabyte != 0)
+                bytemass[0] = metabyte;
             return bytemass;
         }
 

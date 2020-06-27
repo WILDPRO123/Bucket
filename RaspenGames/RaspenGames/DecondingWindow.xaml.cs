@@ -42,7 +42,7 @@ namespace RaspenGames
                     mass.Add(pixels[i].Blue);
                 }
             }
-            while (mass[mass.Count - 1] == 0)
+            while (mass[mass.Count - 1] == 255)
                 mass.RemoveAt(mass.Count-1);
             data = new byte[mass.Count];
             for(int i = 0; i < mass.Count; i++)
@@ -88,10 +88,22 @@ namespace RaspenGames
                 result = Library.PerformCryptography(data, decryptor);
             }
             StringBuilder sb = new StringBuilder();
+            bool freeBytes = true;
             for (int i = result.Length-1; i >=0; i--)
             {
-                sb.Append(byteToBoolStr(result[i]));
+                //sb.Append(byteToBoolStr(result[i]));
+                if (result[i] == 0 && freeBytes)
+                { 
+                
+                }
+                else
+                {
+                    sb.Insert(0, result[i].ToString("X") + ' ');
+                    freeBytes = false;
+                }
+                
             }
+            
             textBoxResult.Text = sb.ToString();
         }
     }

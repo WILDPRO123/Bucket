@@ -120,7 +120,17 @@ namespace RaspenGames
 
         private void Decide_Click(object sender, RoutedEventArgs e)
         {
-            var mass = Library.toByte(textBoxInput.Text);
+            var bytes = false;
+            for(int i = 0;i<textBoxInput.Text.Length;i++)
+                if(textBoxInput.Text[i]!='0'&& textBoxInput.Text[i] != '1')
+                {
+                    bytes = true;
+                }
+            byte[] mass;
+            if (bytes)
+                 mass = Library.fromStringToByte(textBoxInput.Text);
+            else
+                mass = Library.toByte(textBoxInput.Text);            
             mass = encrypt(mass);
             var pixels = Library.toPixels(mass);
             Draw(pixels);
