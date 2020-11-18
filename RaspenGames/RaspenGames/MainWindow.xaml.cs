@@ -17,6 +17,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Resources;
+using RaspenGames.Additional;
 
 namespace RaspenGames
 {
@@ -25,15 +26,32 @@ namespace RaspenGames
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Photo photo;
+        private static Photo _photo;
+
         private static byte[] Key;
+
         private static byte[] IV;
+
+        private static byte[] ParseIntToByteArray(int value)
+        {
+            var result = new byte[4];
+
+            var counter = 3;
+
+            while (value > 0)
+            {
+                result[counter] = (byte)value;
+                value >>= 8;
+                counter--;
+            }
+            return result;
+        }
 
         public MainWindow()
         {
-            InitializeComponent();        
+            InitializeComponent();
         }
- 
+
         private byte[] encrypt(byte[] data)
         {
             using (var aes = Aes.Create())
@@ -54,7 +72,7 @@ namespace RaspenGames
 
         private void decrypt()
         {
-            var pixels = Library.ReadPixels(photo);
+            var pixels = Library.ReadPixels(_photo);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < pixels.Length; i++)
             {
@@ -84,8 +102,10 @@ namespace RaspenGames
             textBoxKey.Text = sb.ToString();
         }
 
-        private void Draw(Pixel[] pixels)
+        private static Photo MakePhoto(Pixel[] pixels)
         {
+            Photo photo;
+
             if (pixels.Length < 7)
             {
                 photo = new Photo(pixels.Length, 1);
@@ -99,9 +119,9 @@ namespace RaspenGames
                 double side = Math.Sqrt(pixels.Length);
                 int counter = 0;
                 photo = new Photo((int)Math.Ceiling(side), (int)Math.Round(side));
-                for (int i = 0; i < photo.width; i++)
+                for (int i = 0; i < photo.Width; i++)
                 {
-                    for (int j = 0; j < photo.height; j++)
+                    for (int j = 0; j < photo.Height; j++)
                     {
                         if (pixels.Length > counter)
                         {
@@ -115,28 +135,83 @@ namespace RaspenGames
                     }
                 }
             }
-            image.Source = Library.BitmapToBitmapImage(Library.Photo2Bitmap(photo));
+
+            return photo;
+        }
+
+        private void Draw(Pixel[] pixels)
+        {
+            _photo = MakePhoto(pixels);
+            image.Source = Library.BitmapToBitmapImage(Library.Photo2Bitmap(_photo));
         }
 
         private void Decide_Click(object sender, RoutedEventArgs e)
         {
             var bytes = false;
-            for(int i = 0;i<textBoxInput.Text.Length;i++)
-                if(textBoxInput.Text[i]!='0'&& textBoxInput.Text[i] != '1')
+            for (int i = 0; i < textBoxInput.Text.Length; i++)
+                if (textBoxInput.Text[i] != '0' && textBoxInput.Text[i] != '1')
                 {
                     bytes = true;
                 }
             byte[] mass;
             if (bytes)
-                 mass = Library.fromStringToByte(textBoxInput.Text);
+                mass = Library.fromStringToByte(textBoxInput.Text);
             else
-                mass = Library.toByte(textBoxInput.Text);            
+                mass = Library.toByte(textBoxInput.Text);
             mass = encrypt(mass);
             var pixels = Library.toPixels(mass);
             Draw(pixels);
             decrypt();
-            DecondingWindow decondingWindow = new DecondingWindow(photo);
-            decondingWindow.Show();
+            ButtonSaveFile.IsEnabled = true;
+        }
+
+        private static DefaultDialogService _dialog = new DefaultDialogService();
+
+        private void ButtonOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            if(_dialog.OpenFileDialog())
+            {
+                new DecodingWindow(MakePhoto(Library.toPixels(File.ReadAllBytes(_dialog.File)))).Show();               
+            }
+        }
+
+        private void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (_dialog.SaveFileDialog())
+            {
+                var data = _photo.Serialize();
+                
+                using (var bw = new BinaryWriter(new FileStream(_dialog.File, FileMode.Create, FileAccess.Write)))
+                {
+                    foreach (var array in data)
+                        bw.Write(array);
+                }
+
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] array;
+            CheckBoxFirst.Visibility = Visibility.Visible;
+            CheckBoxSecond.Visibility = Visibility.Visible;
+            if(_dialog.OpenFileDialog())
+            {
+                array = File.ReadAllBytes(_dialog.File);
+                CheckBoxFirst.IsChecked = true;
+                if(_dialog.OpenFileDialog())
+                {
+                    CheckBoxSecond.IsChecked = true;
+                    if(array.SequenceEqual(File.ReadAllBytes(_dialog.File)))
+                    {
+                        MessageBox.Show("Картинки идентичны.");
+                    }
+                    else
+                        MessageBox.Show("Картинки разные.");
+                }
+            }
+            CheckBoxFirst.Visibility = Visibility.Hidden;
+            CheckBoxSecond.Visibility = Visibility.Hidden;
         }
     }
 }

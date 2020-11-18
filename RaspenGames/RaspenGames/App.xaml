@@ -4,6 +4,36 @@
              xmlns:local="clr-namespace:RaspenGames"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Window" x:Key="Window">
+            <Setter Property="Background" Value="#404040"/>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="ComboBox">
+            <Setter Property="Background" Value="#202020"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TextBox">
+            <Setter Property="Foreground" Value="#C9C9C9"/>
+            <Setter Property="Background" Value="#202020"/>
+            <Setter Property="BorderBrush" Value="#C9C9C9"/>
+            <Setter Property="CaretBrush" Value="#C9C9C9"/>
+        </Style>
+        <Style TargetType="RichTextBox" x:Key="RichTextBox">
+            <Setter Property="Foreground" Value="#C9C9C9"/>
+            <Setter Property="Background" Value="#202020"/>
+            <Setter Property="BorderBrush" Value="#C9C9C9"/>
+            <Setter Property="CaretBrush" Value="#C9C9C9"/>
+        </Style>
+        <Style TargetType="Button" x:Key="Button">
+            <Setter Property="Height" Value="26.5"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="Background" Value="#E9E9E9"/>
+            <Setter Property="Width" Value="105"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlock">
+            <Setter Property="Foreground" Value="#C9C9C9"/>
+        </Style>
+        <Style TargetType="ListBox" x:Key="ListBox">
+            <Setter Property="Background" Value="#404040"/>
+            <Setter Property="BorderBrush" Value="#C9C9C9"/>
+        </Style>
     </Application.Resources>
 </Application>

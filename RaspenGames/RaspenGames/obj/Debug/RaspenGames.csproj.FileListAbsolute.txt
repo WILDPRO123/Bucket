@@ -47,3 +47,21 @@ D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debu
 D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.CoreCompileInputs.cache
 D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.exe
 D:\Программы\c#\Для себя\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe.config
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.exe
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\bin\Debug\RaspenGames.pdb
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csprojAssemblyReference.cache
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\MainWindow.g.cs
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\App.g.cs
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.cache
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames_MarkupCompile.lref
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\MainWindow.baml
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.g.resources
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.Properties.Resources.resources
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.GenerateResource.cache
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.csproj.CoreCompileInputs.cache
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.exe
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\RaspenGames.pdb
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\App.baml
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\DecodingWindow.g.cs
+D:\Users\Andrew\Documents\Projects\Bucket\RaspenGames\RaspenGames\obj\Debug\DecodingWindow.baml

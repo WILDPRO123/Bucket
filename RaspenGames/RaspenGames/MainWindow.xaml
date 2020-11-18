@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaspenGames"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000" Style="{StaticResource Window}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -33,10 +38,15 @@
             <RowDefinition/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxInput" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxOutPut" Grid.Row="1" Grid.RowSpan="3" Grid.Column="8" Grid.ColumnSpan="4"/>
-        <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxKey" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+        <TextBox Style="{StaticResource TextBox}" AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxInput" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <TextBox Style="{StaticResource TextBox}" AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxOutPut" Grid.Row="1" Grid.RowSpan="3" Grid.Column="8" Grid.ColumnSpan="4"/>
+        <TextBox Style="{StaticResource TextBox}" AcceptsReturn="True" TextWrapping="Wrap" x:Name="textBoxKey" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
         <Image x:Name="image" Grid.Column="1" Grid.Row="4" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
-        <Button Content="Расчёт" x:Name="Decide" Grid.Column="6" Grid.Row="1" Click="Decide_Click" />
+        <Button Style="{StaticResource Button}" Content="Расчёт" x:Name="ButtonDecide" Grid.Column="15" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" Click="Decide_Click" />
+        <Button Style="{StaticResource Button}" Content="Открыть" x:Name="ButtonOpenFile" Grid.Column="15" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="2" Click="ButtonOpenFile_Click"  />
+        <Button Style="{StaticResource Button}" IsEnabled="False" Content="Сохранить" x:Name="ButtonSaveFile" Grid.Column="15" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="3" Click="ButtonSaveFile_Click"  />
+        <Button Style="{StaticResource Button}" Content="Сравнить" Grid.Column="15" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Click="Button_Click"/>
+        <CheckBox x:Name="CheckBoxFirst" Visibility="Hidden" IsEnabled="False" Grid.Row="5" Grid.Column="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox x:Name="CheckBoxSecond" Visibility="Hidden" IsEnabled="False" Grid.Row="5" Grid.Column="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>

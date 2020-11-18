@@ -1,0 +1,39 @@
+﻿<Window x:Class="RaspenGames.DecodingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RaspenGames"
+        mc:Ignorable="d"
+        Title="DecondingWindow" Height="450" Width="800" Style="{StaticResource Window}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <TextBox Style="{StaticResource TextBox}" x:Name="textBoxKey" Grid.Row="1" Grid.Column="1" AcceptsReturn="True" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <TextBox Style="{StaticResource TextBox}"  x:Name="textBoxIV" Grid.Row="2" Grid.Column="1" AcceptsReturn="True" TextWrapping="Wrap" Grid.ColumnSpan="3"/>
+        <TextBox Style="{StaticResource TextBox}" x:Name="textBoxResult" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="3" AcceptsReturn="True" TextWrapping="Wrap"/>
+        <Button Style="{StaticResource Button}" x:Name="Decide" Content="Start" Grid.Column="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" Click="Decide_Click"/>
+        <Image x:Name="Image1" Grid.Column="1" Grid.Row="4" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+    </Grid>
+</Window>
